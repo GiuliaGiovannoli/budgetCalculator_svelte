@@ -6,7 +6,6 @@
   export let amount = 0;
 
   const deleteExpense = getContext('delete');
-
   const setEditedExpense = getContext('edit');
 </script>
 
@@ -19,12 +18,14 @@
   </div>
   <div class="expense-buttons">
     <button class="expense-btn edit-btn" on:click={() => setEditedExpense(id)}>
-      <i class="fas fa-pen" />
       EDIT
     </button>
     <button class="expense-btn delete-btn" on:click={() => deleteExpense(id)}>
-      <i class="fas fa-trash" />
       DELETE
     </button>
+  </div>
+  <div>
+    <button class="expense-btn edit-btn"> PAID </button>
+    <button class="expense-btn delete-btn"> DEBTS </button>
   </div>
 </article>

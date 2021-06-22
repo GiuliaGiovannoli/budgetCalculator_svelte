@@ -31,9 +31,19 @@
   }
 
   function addExpense({ name, amount }) {
-    let expense = { id: Math.random() * Date.now(), name, amount };
+    let expense = {
+      id: Math.random() * Date.now(),
+      name,
+      amount,
+      paid: false,
+      debts: false,
+    };
     expensesArray = [expense, ...expensesArray];
   }
+
+  //function addPaidExpense({ name, amount, id }) {}
+
+  //function addDebtsExpense({ name, amount, id }) {}
 
   function setEditedExpense(id) {
     let expense = expensesArray.find((item) => item.id === id);
@@ -45,7 +55,9 @@
 
   function editExpense({ name, amount }) {
     expensesArray = expensesArray.map((item) => {
-      return item.id === setId ? { ...item, name, amount } : { ...item };
+      return item.id === setId
+        ? { ...item, name, amount, paid: false, debts: false }
+        : { ...item };
     });
     setId = null;
     setAmount = null;
@@ -53,20 +65,18 @@
   }
 
   setContext('delete', deleteExpense);
-
   setContext('edit', setEditedExpense);
 </script>
 
 <div>
   <h2>{categoryName.toUpperCase()}</h2>
-
   {#if (categoryName === 'To Pay') & !isExpenseFormOpen}
     <button type="button" class="btn btn-primary" on:click={showExpenseForm}>
       ADD NEW EXPENSE
     </button>
   {/if}
 
-  {#if (categoryName === 'To Pay') & isExpenseFormOpen}
+  {#if isExpenseFormOpen}
     <Form
       {addExpense}
       name={setName}
@@ -78,15 +88,14 @@
   {/if}
   <br />
   <br />
-  <ul>
-    {#each expensesArray as expense, index (expense.id)}
-      <div>
-        <Card {...expense} />
-      </div>
-    {:else}
-      <h5>NO EXPENSES FOUND</h5>
-    {/each}
-  </ul>
+
+  {#each expensesArray as expense, index (expense.id)}
+    <div>
+      <Card {...expense} />
+    </div>
+  {:else}
+    <h6>No espenses found</h6>
+  {/each}
 </div>
 
 <style>
