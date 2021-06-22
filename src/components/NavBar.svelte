@@ -4,10 +4,10 @@
 
 <nav class="nav">
   <div class="nav-center">
-    <h1 class="nav-title">Budget calculator</h1>
+    <h1 class="nav-title">THE BUDGET CALCULATOR</h1>
     <button type="button" class="nav-btn" on:click={showForm}>
       <i class="far fa-plus-square" />
-      ADD
+      ADD NEW CATEGORY
     </button>
   </div>
 </nav>

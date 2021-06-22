@@ -2,18 +2,18 @@
   import { setContext } from 'svelte';
 
   import Navbar from './components/NavBar.svelte';
-  import List from './components/List.svelte';
-  import Form from './components/Form.svelte';
+  import CategoriesBox from './components/CategoriesBox.svelte';
+  import CategoryForm from './components/CategoryForm.svelte';
 
-  let expensesArray = [];
+  let categoriesArray = [
+    { id: Math.random() * Date.now(), categoryName: 'To Pay' },
+    { id: Math.random() * Date.now(), categoryName: 'Paid' },
+    { id: Math.random() * Date.now(), categoryName: 'Debts' },
+  ];
 
-  let setName = '';
-  let setAmount = null;
-  let setId = null;
+  let setCategoryName = '';
 
   let isFormOpen = false;
-
-  $: isEditing = setId ? true : false;
 
   function showForm() {
     isFormOpen = true;
@@ -26,61 +26,30 @@
     setId = null;
   }
 
-  function deleteExpense(id) {
-    expensesArray = expensesArray.filter((item) => item.id !== id);
-  }
-
   function clearExpenses() {
-    expensesArray = [];
+    categoriesArray = [];
   }
 
-  function addExpense({ name, amount }) {
-    let expense = { id: Math.random() * Date.now(), name, amount };
-    expensesArray = [expense, ...expensesArray];
+  function addCategory({ categoryName }) {
+    let category = { id: Math.random() * Date.now(), categoryName };
+    categoriesArray = [category, ...categoriesArray];
   }
-  function setEditedExpense(id) {
-    let expense = expensesArray.find((item) => item.id === id);
-    setId = expense.id;
-    setName = expense.name;
-    setAmount = expense.amount;
-    showForm();
-  }
-
-  function editExpense({ name, amount }) {
-    expensesArray = expensesArray.map((item) => {
-      return item.id === setId ? { ...item, name, amount } : { ...item };
-    });
-    setId = null;
-    setAmount = null;
-    setName = '';
-  }
-
-  setContext('delete', deleteExpense);
-
-  setContext('edit', setEditedExpense);
 </script>
 
 <Navbar {showForm} />
 
 <main class="content">
   {#if isFormOpen}
-    <Form
-      {addExpense}
-      name={setName}
-      amount={setAmount}
-      {isEditing}
-      {editExpense}
-      {hideForm}
-    />
+    <CategoryForm {addCategory} categoryName={setCategoryName} {hideForm} />
   {/if}
 
-  <List {expensesArray} />
+  <CategoriesBox {categoriesArray} />
 
   <button
     type="button"
     class="btn btn-primary btn-block"
     on:click={clearExpenses}
   >
-    Delete all
+    Delete all categories
   </button>
 </main>

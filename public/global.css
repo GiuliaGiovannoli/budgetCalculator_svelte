@@ -97,9 +97,9 @@ a {
 }
 
 .btn-block {
-  width: 100%;
+  width: 40%;
   display: block;
-  margin: 0 auto;
+  margin: 2% 30%;
   box-shadow: var(--lightShadow);
 }
 
@@ -126,24 +126,25 @@ a {
   width: 85%;
   max-width: 35rem;
   margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
 }
 
 .nav-title {
   text-transform: capitalize;
   color: var(--mainWhite);
-  margin-bottom: 0;
+  margin: 3px;
   letter-spacing: 2px;
+  font-style: italic;
 }
 
 .nav-btn {
   background: transparent;
-  font-size: 1.3rem;
-  border: none;
+  font-size: 1.1rem;
+  border: 2px solid white;
+  padding: 5px;
   cursor: pointer;
   text-transform: capitalize;
   transition: var(--mainTransition);
+  float: right;
 }
 
 .nav-btn:hover {
@@ -152,8 +153,7 @@ a {
 
 .content {
   padding: 3rem 0;
-  width: 85vw;
-  max-width: 35rem;
+  max-width: 100%;
   margin: 0 auto;
 }
 
