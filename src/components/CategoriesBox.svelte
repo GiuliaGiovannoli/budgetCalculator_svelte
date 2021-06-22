@@ -1,6 +1,10 @@
 <script>
   import List from './List.svelte';
-  export let categoriesArray = [];
+  export let categoriesArray = [
+    { id: 1, categoryName: 'To Pay' },
+    { id: 2, categoryName: 'Paid' },
+    { id: 3, categoryName: 'Debts' },
+  ];
 </script>
 
 <section>

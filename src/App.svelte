@@ -6,9 +6,9 @@
   import CategoryForm from './components/CategoryForm.svelte';
 
   let categoriesArray = [
-    { id: Math.random() * Date.now(), categoryName: 'To Pay' },
-    { id: Math.random() * Date.now(), categoryName: 'Paid' },
-    { id: Math.random() * Date.now(), categoryName: 'Debts' },
+    { id: 1, categoryName: 'To Pay' },
+    { id: 2, categoryName: 'Paid' },
+    { id: 3, categoryName: 'Debts' },
   ];
 
   let setCategoryName = '';
